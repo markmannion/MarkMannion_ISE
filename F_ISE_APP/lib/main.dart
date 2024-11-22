@@ -73,33 +73,36 @@ class GolfAppState extends State<GolfApp> {
       appBar: AppBar(title: const Text('Yardage Calculator')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: yardController,
-              decoration: const InputDecoration(labelText: 'Yardage'),
-              keyboardType: TextInputType.number,
-            ),
-            TextField(
-              controller: windController,
-              decoration: const InputDecoration(labelText: 'Wind Speed MPH (Neg if downwind)'),
-              keyboardType: TextInputType.number,
-            ),
-            TextField(
-              controller: tempController,
-              decoration: const InputDecoration(labelText: 'Temperature *C'),
-              keyboardType: TextInputType.number,
-            ),
-            TextField(
-              controller: holeController,
-              decoration: const InputDecoration(labelText: 'Hole'),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(onPressed: calculate, child: const Text('Calculate')),
-            const SizedBox(height: 20),
-            Text(result, textAlign: TextAlign.center),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: yardController,
+                decoration: const InputDecoration(labelText: 'Yardage'),
+                keyboardType: TextInputType.number,
+              ),
+              TextField(
+                controller: windController,
+                decoration: const InputDecoration(labelText: 'Wind Speed MPH (Neg if downwind)'),
+                keyboardType: TextInputType.number,
+              ),
+              TextField(
+                controller: tempController,
+                decoration: const InputDecoration(labelText: 'Temperature *C'),
+                keyboardType: TextInputType.number,
+              ),
+              TextField(
+                controller: holeController,
+                decoration: const InputDecoration(labelText: 'Hole'),
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(onPressed: calculate, child: const Text('Calculate')),
+              const SizedBox(height: 20),
+              Text(result, textAlign: TextAlign.center),
+            ],
+          ),
         ),
       ),
     );

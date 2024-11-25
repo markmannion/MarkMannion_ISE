@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:numberpicker/numberpicker.dart';
 
 fetchData(String url) async{
   http.Response response = await http.get(Uri.parse(url));
@@ -11,6 +12,7 @@ fetchData(String url) async{
 void main() {
   runApp(MaterialApp(home: GolfApp()));
 }
+
 
 class GolfApp extends StatefulWidget {
   const GolfApp({super.key});
@@ -101,6 +103,8 @@ class GolfAppState extends State<GolfApp> {
               ElevatedButton(onPressed: calculate, child: const Text('Calculate')),
               const SizedBox(height: 20),
               Text(result, textAlign: TextAlign.center),
+              const SizedBox(height: 20),
+              _IntegerExample(),
             ],
           ),
         ),
@@ -108,3 +112,28 @@ class GolfAppState extends State<GolfApp> {
     );
   }
 }
+
+class _IntegerExample extends StatefulWidget {
+  @override
+  _IntegerExampleState createState() => _IntegerExampleState();
+}
+
+class _IntegerExampleState extends State<_IntegerExample> {
+  int _currentValue = 3;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        NumberPicker(
+          value: _currentValue,
+          minValue: 0,
+          maxValue: 400,
+          onChanged: (value) => setState(() => _currentValue = value),
+        ),
+        Text('Yardage: $_currentValue'),
+      ],
+    );
+  }
+}
+

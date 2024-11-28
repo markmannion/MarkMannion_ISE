@@ -74,17 +74,9 @@ class HomePage extends StatelessWidget {
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            shadows: [
-              Shadow(
-                blurRadius: 5.0,
-                color: Colors.grey,
-                offset: Offset(2.0,2.0),
-                )
-              ],
             ),
           ),
         ),
-        backgroundColor: themeProvider.themeMode == ThemeMode.dark ? Colors.black : Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(

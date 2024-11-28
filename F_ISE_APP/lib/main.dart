@@ -82,9 +82,10 @@ class HomePage extends StatelessWidget {
                     themeProvider.themeMode == ThemeMode.dark
                         ? 'assets/images/white_ball.png'
                         : 'assets/images/black_ball.png',
-                    width: 200, // Set the desired width
-                    height: 150, // Set the desired height
+                    width: 300, // Set the desired width
+                    height: 300, // Set the desired height
                   ),
+                  const SizedBox(height: 40), 
                   const Text(
                     'Choose your course: ',
                     style: TextStyle(fontSize: 24),

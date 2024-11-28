@@ -11,7 +11,7 @@ void main() {
   runApp(MaterialApp(
     home: HomePage(),
     routes: {
-      '/calculator': (context) => GolfApp()
+      '/calculator': (context) => GolfApp(),
     },
   ));
 }

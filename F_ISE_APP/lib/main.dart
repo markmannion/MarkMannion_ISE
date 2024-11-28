@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Yardage Calculator')),
+      appBar: AppBar(title: Text('Yardage Calculator', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -78,6 +78,7 @@ class HomePage extends StatelessWidget {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  const SizedBox(height: 60),
                   Image.asset(
                     themeProvider.themeMode == ThemeMode.dark
                         ? 'assets/images/white_ball.png'
@@ -85,12 +86,12 @@ class HomePage extends StatelessWidget {
                     width: 300, // Set the desired width
                     height: 300, // Set the desired height
                   ),
-                  const SizedBox(height: 40), 
+                  const SizedBox(height: 60), 
                   const Text(
                     'Choose your course: ',
                     style: TextStyle(fontSize: 24),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 60),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/calculator');

@@ -68,7 +68,23 @@ class HomePage extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Yardage Calculator', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))),
+      appBar: AppBar(
+        title: Text(
+          'Yardage Calculator',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                blurRadius: 5.0,
+                color: Colors.grey,
+                offset: Offset(2.0,2.0),
+                )
+              ],
+            ),
+          ),
+        ),
+        backgroundColor: themeProvider.themeMode == ThemeMode.dark ? Colors.black : Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -81,8 +97,8 @@ class HomePage extends StatelessWidget {
                   const SizedBox(height: 60),
                   Image.asset(
                     themeProvider.themeMode == ThemeMode.dark
-                        ? 'assets/images/white_ball.png'
-                        : 'assets/images/black_ball.png',
+                        ? 'assets/images/golf_white.png'
+                        : 'assets/images/golf_dark.png',
                     width: 300, // Set the desired width
                     height: 300, // Set the desired height
                   ),

@@ -21,5 +21,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/black_ball.png
-    - assets/images/white_ball.png
+    - assets/images/golf_dark.png
+    - assets/images/golf_white.png
+    - assets/images/range_black.png
+    - assets/images/range_white.png

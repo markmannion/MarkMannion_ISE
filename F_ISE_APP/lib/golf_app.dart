@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'main.dart'; // Import the main.dart file where ThemeProvider is defined
 
 fetchData(String url) async {
   http.Response response = await http.get(Uri.parse(url));
@@ -105,14 +107,24 @@ class GolfAppState extends State<GolfApp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Fota Island\nDeerpark Course', style: TextStyle(fontSize: 35))),
+      appBar: AppBar(title: const Text('Yardage Calculator')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Image.asset(
+                themeProvider.themeMode == ThemeMode.dark
+                    ? 'assets/images/range_white.png'
+                    : 'assets/images/range_black.png',
+                width: 200, // Set the desired width
+                height: 150, // Set the desired height
+              ),
+              const SizedBox(height: 20),
               _buildInputCard('Yardage', yardController),
               _buildInputCard('Wind Speed MPH (Neg if downwind)', windController),
               _buildInputCard('Temperature *C', tempController),
@@ -123,7 +135,7 @@ class GolfAppState extends State<GolfApp> {
               Text(
                 result,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold), // Make text bigger and bolder
               ),
               const SizedBox(height: 20),
             ],

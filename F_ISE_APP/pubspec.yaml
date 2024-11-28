@@ -1,5 +1,5 @@
-name: python_link
-description: "A new Flutter project."
+name: golf_yardage_calculator
+description: "ISE Submission Project"
 publish_to: 'none'
 version: 0.1.0
 
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.2.2
-  numberpicker: ^2.1.2
+  provider: ^6.0.0
   
 
 dev_dependencies:
@@ -20,3 +20,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/black_ball.png
+    - assets/images/white_ball.png

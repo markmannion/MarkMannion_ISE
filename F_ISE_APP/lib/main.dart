@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -7,13 +8,56 @@ fetchData(String url) async {
   return response.body;
 }
 
+final lightTheme = ThemeData(
+  brightness: Brightness.light,
+  primaryColor: Colors.blueGrey,
+);
+
+final darkTheme = ThemeData(
+  brightness: Brightness.dark,
+  primaryColor: Colors.black,
+);
+
+class ThemeProvider extends ChangeNotifier {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  ThemeMode get themeMode => _themeMode;
+
+  void toggleTheme() {
+    _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
+  }
+}
+
 void main() {
-  runApp(MaterialApp(
-    home: HomePage(),
-    routes: {
-      '/calculator': (context) => GolfApp()
-    },
-  ));
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'Flutter Dark Mode',
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          themeMode: themeProvider.themeMode,
+          home: HomePage(),
+          routes: {
+            '/calculator': (context) => GolfApp(),
+          },
+        );
+      },
+    );
+  }
 }
 
 class HomePage extends StatelessWidget {
@@ -21,24 +65,53 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: AppBar(title: Text('Yardage Calculator')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Yardage Calculator',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    themeProvider.themeMode == ThemeMode.dark
+                        ? 'assets/images/white_ball.png'
+                        : 'assets/images/black_ball.png',
+                    width: 200, // Set the desired width
+                    height: 150, // Set the desired height
+                  ),
+                  const Text(
+                    'Choose your course: ',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/calculator');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    ),
+                    child: const Text('Fota Deerpark Course', style: TextStyle(fontSize: 18)),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/calculator');
-                },
-                child: const Text('Go to Calculator'),
+              Column(
+                children: [
+                  const Text('Theme Toggle', style: TextStyle(fontSize: 18)),
+                  Switch(
+                    value: themeProvider.themeMode == ThemeMode.dark,
+                    onChanged: (_) {
+                      themeProvider.toggleTheme();
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                ],
               ),
             ],
           ),
@@ -123,7 +196,7 @@ class GolfAppState extends State<GolfApp> {
               Text(
                 result,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold), // Make text bigger and bolder
               ),
               const SizedBox(height: 20),
             ],

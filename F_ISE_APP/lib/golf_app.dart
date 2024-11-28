@@ -106,7 +106,7 @@ class GolfAppState extends State<GolfApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Yardage Calculator')),
+      appBar: AppBar(title: const Text('Fota Island\nDeerpark Course', style: TextStyle(fontSize: 35))),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(

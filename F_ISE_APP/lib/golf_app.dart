@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'main.dart'; // Import the main.dart file where ThemeProvider is defined
+import 'main.dart';
+
 
 fetchData(String url) async {
   http.Response response = await http.get(Uri.parse(url));
@@ -121,8 +122,8 @@ class GolfAppState extends State<GolfApp> {
                 themeProvider.themeMode == ThemeMode.dark
                     ? 'assets/images/range_white.png'
                     : 'assets/images/range_black.png',
-                width: 200, // Set the desired width
-                height: 150, // Set the desired height
+                width: 200, 
+                height: 150, 
               ),
               const SizedBox(height: 20),
               _buildInputCard('Yardage', yardController),
@@ -135,7 +136,7 @@ class GolfAppState extends State<GolfApp> {
               Text(
                 result,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold), // Make text bigger and bolder
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold), 
               ),
               const SizedBox(height: 20),
             ],

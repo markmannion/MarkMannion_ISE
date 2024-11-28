@@ -91,8 +91,8 @@ class HomePage extends StatelessWidget {
                     themeProvider.themeMode == ThemeMode.dark
                         ? 'assets/images/golf_white.png'
                         : 'assets/images/golf_dark.png',
-                    width: 300, // Set the desired width
-                    height: 300, // Set the desired height
+                    width: 300, 
+                    height: 300, 
                   ),
                   const SizedBox(height: 60), 
                   const Text(
@@ -188,14 +188,24 @@ class GolfAppState extends State<GolfApp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Yardage Calculator')),
+      appBar: AppBar(title: const Text('Fota - Deerpark Course')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const SizedBox(height: 10),
+                  Image.asset(
+                    themeProvider.themeMode == ThemeMode.dark
+                        ? 'assets/images/range_white.png'
+                        : 'assets/images/range_black.png',
+                    width: 200, 
+                    height: 200, 
+                  ),
               _buildInputCard('Yardage', yardController),
               _buildInputCard('Wind Speed MPH (Neg if downwind)', windController),
               _buildInputCard('Temperature *C', tempController),

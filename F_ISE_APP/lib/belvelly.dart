@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'main.dart';
-import 'deerpark.dart';
 
 fetchData(String url) async {
   http.Response response = await http.get(Uri.parse(url));
@@ -28,10 +27,6 @@ class GolfApp extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -132,7 +127,7 @@ class BelvellyState extends State<Belvelly> {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Yardage Calculator')),
+      appBar: AppBar(title: const Text('Fota - Belvelly Course')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(

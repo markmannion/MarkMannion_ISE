@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'deerpark.dart';
 import 'belvelly.dart';
 
 fetchData(String url) async {
@@ -110,9 +109,9 @@ class HomePage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     ),
-                    child: const Text('Fota Deerpark Course', style: TextStyle(fontSize: 18)),
+                    child: const Text('Fota - Deerpark Course', style: TextStyle(fontSize: 18)),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/belvelly');
@@ -120,7 +119,7 @@ class HomePage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     ),
-                    child: const Text('Fota Belvelly Course', style: TextStyle(fontSize: 18)),
+                    child: const Text('Fota - Belvelly Course', style: TextStyle(fontSize: 18)),
                   ),
                 ],
               ),
@@ -201,8 +200,9 @@ class GolfAppState extends State<GolfApp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: AppBar(title: const Text('Fota - Deerpark Course')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -215,22 +215,9 @@ class GolfAppState extends State<GolfApp> {
                     ? 'assets/images/range_white.png'
                     : 'assets/images/range_black.png',
                 width: 200,
-                height: 200,
+                height: 150,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/calculator');
-                },
-                child: const Text('Go to Calculator'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/belvelly'); // Navigate to Belvelly
-                },
-                child: const Text('Go to Belvelly'),
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
               _buildInputCard('Yardage', yardController),
               _buildInputCard('Wind Speed MPH (Neg if downwind)', windController),
               _buildInputCard('Temperature *C', tempController),

@@ -111,13 +111,21 @@ class GolfAppState extends State<GolfApp> {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Yardage Calculator')),
+      appBar: AppBar(title: const Text('Fota - Deerpark Course')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Image.asset(
+                themeProvider.themeMode == ThemeMode.dark
+                    ? 'assets/images/range_white.png'
+                    : 'assets/images/range_black.png',
+                width: 200,
+                height: 150,
+              ),
+              const SizedBox(height: 20),
               Image.asset(
                 themeProvider.themeMode == ThemeMode.dark
                     ? 'assets/images/range_white.png'

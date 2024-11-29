@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'belvelly.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 fetchData(String url) async {
   http.Response response = await http.get(Uri.parse(url));
@@ -133,6 +134,22 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () async{
+                      final url = Uri.parse('https://github.com/markmannion');
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url);
+                      }else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    child: const Text('https://github.com/markmannion',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],

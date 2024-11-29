@@ -1,5 +1,5 @@
-name: "golf_yardage_calculator"
-description: "ISE Submission Project"
+name: golf_yardage_calculator
+description: ISE Submission Project
 publish_to: 'none'
 version: 0.1.0
 

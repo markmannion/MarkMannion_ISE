@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'deerpark.dart';
+import 'belvelly.dart';
 
 fetchData(String url) async {
   http.Response response = await http.get(Uri.parse(url));
@@ -53,6 +55,7 @@ class MyApp extends StatelessWidget {
           home: HomePage(),
           routes: {
             '/calculator': (context) => GolfApp(),
+            '/belvelly': (context) => Belvelly(),
           },
         );
       },
@@ -109,11 +112,21 @@ class HomePage extends StatelessWidget {
                     ),
                     child: const Text('Fota Deerpark Course', style: TextStyle(fontSize: 18)),
                   ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/belvelly');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    ),
+                    child: const Text('Fota Belvelly Course', style: TextStyle(fontSize: 18)),
+                  ),
                 ],
               ),
               Column(
                 children: [
-                  const Text('Theme Toggle', style: TextStyle(fontSize: 18)),
+                  const Text('Light/Dark Theme', style: TextStyle(fontSize: 18)),
                   Switch(
                     value: themeProvider.themeMode == ThemeMode.dark,
                     onChanged: (_) {
@@ -188,10 +201,8 @@ class GolfAppState extends State<GolfApp> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Fota - Deerpark Course')),
+      appBar: AppBar(title: const Text('Home')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -199,13 +210,27 @@ class GolfAppState extends State<GolfApp> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(height: 10),
-                  Image.asset(
-                    themeProvider.themeMode == ThemeMode.dark
-                        ? 'assets/images/range_white.png'
-                        : 'assets/images/range_black.png',
-                    width: 200, 
-                    height: 200, 
-                  ),
+              Image.asset(
+                themeProvider.themeMode == ThemeMode.dark
+                    ? 'assets/images/range_white.png'
+                    : 'assets/images/range_black.png',
+                width: 200,
+                height: 200,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/calculator');
+                },
+                child: const Text('Go to Calculator'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/belvelly'); // Navigate to Belvelly
+                },
+                child: const Text('Go to Belvelly'),
+              ),
+              const SizedBox(height: 20),
               _buildInputCard('Yardage', yardController),
               _buildInputCard('Wind Speed MPH (Neg if downwind)', windController),
               _buildInputCard('Temperature *C', tempController),
@@ -216,7 +241,7 @@ class GolfAppState extends State<GolfApp> {
               Text(
                 result,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold), // Make text bigger and bolder
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
             ],

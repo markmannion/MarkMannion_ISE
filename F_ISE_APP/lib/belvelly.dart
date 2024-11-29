@@ -19,6 +19,7 @@ void main() {
 }
 
 class GolfApp extends StatelessWidget {
+  const GolfApp({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +128,7 @@ class BelvellyState extends State<Belvelly> {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Fota - Belvelly Course')),
+      appBar: AppBar(title: const Text('Fota - Belvelly Course', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold))),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -152,7 +153,7 @@ class BelvellyState extends State<Belvelly> {
               Text(
                 result,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ],
           ),

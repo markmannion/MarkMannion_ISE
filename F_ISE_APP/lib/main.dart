@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
                     'Choose your course: ',
                     style: TextStyle(fontSize: 24),
                   ),
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/calculator');
@@ -202,7 +202,7 @@ class GolfAppState extends State<GolfApp> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Fota - Deerpark Course')),
+      appBar: AppBar(title: const Text('Fota - Deerpark Course', style:  TextStyle(fontSize: 28, fontWeight: FontWeight.bold))),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -228,7 +228,7 @@ class GolfAppState extends State<GolfApp> {
               Text(
                 result,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
             ],

@@ -4,11 +4,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'main.dart';
 
+//linking to the python app through a local network
 fetchData(String url) async {
   http.Response response = await http.get(Uri.parse(url));
   return response.body;
 }
 
+//linking to the homepage
 void main() {
   runApp(MaterialApp(
     home: HomePage(),
@@ -61,6 +63,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
+//creating the Belvelly widget so I can access this widget and page through the homepage
 class Belvelly extends StatefulWidget {
   const Belvelly({super.key});
 
@@ -68,6 +71,7 @@ class Belvelly extends StatefulWidget {
   BelvellyState createState() => BelvellyState();
 }
 
+//using the same method as the python app to calculate yardages
 class BelvellyState extends State<Belvelly> {
   final TextEditingController yardController = TextEditingController();
   final TextEditingController windController = TextEditingController();
@@ -78,7 +82,7 @@ class BelvellyState extends State<Belvelly> {
 
   Future<void> calculate() async {
     try {
-      final url = Uri.parse('http://127.0.0.1:5000/calculate');
+      final url = Uri.parse('http://127.0.0.1:5000/calculate'); //same url as the python app
       final body = jsonEncode({
         'yard': int.tryParse(yardController.text) ?? 0,
         'wind': int.tryParse(windController.text) ?? 0,
@@ -136,7 +140,7 @@ class BelvellyState extends State<Belvelly> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                themeProvider.themeMode == ThemeMode.dark
+                themeProvider.themeMode == ThemeMode.dark //change the image based on the theme
                     ? 'assets/images/range_white.png'
                     : 'assets/images/range_black.png',
                 width: 200,

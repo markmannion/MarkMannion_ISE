@@ -4,12 +4,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'main.dart';
 
-
+//linking to the python app through a local network
 fetchData(String url) async {
   http.Response response = await http.get(Uri.parse(url));
   return response.body;
 }
 
+//linking it to the homepage
 void main() {
   runApp(MaterialApp(
     home: HomePage(),
@@ -51,6 +52,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
+//using the python method of calculating yardage
 class GolfApp extends StatefulWidget {
   const GolfApp({super.key});
 
@@ -68,7 +70,7 @@ class GolfAppState extends State<GolfApp> {
 
   Future<void> calculate() async {
     try {
-      final url = Uri.parse('http://127.0.0.1:5000/calculate');
+      final url = Uri.parse('http://127.0.0.1:5000/calculate'); //same url as the python app
       final body = {
         'yard': int.tryParse(yardController.text) ?? 0,
         'wind': int.tryParse(windController.text) ?? 0,
@@ -120,7 +122,7 @@ class GolfAppState extends State<GolfApp> {
             children: [
               Image.asset(
                 themeProvider.themeMode == ThemeMode.dark
-                    ? 'assets/images/range_white.png'
+                    ? 'assets/images/range_white.png' //change the image based on the theme
                     : 'assets/images/range_black.png',
                 width: 200,
                 height: 150,
@@ -128,7 +130,7 @@ class GolfAppState extends State<GolfApp> {
               const SizedBox(height: 20),
               Image.asset(
                 themeProvider.themeMode == ThemeMode.dark
-                    ? 'assets/images/range_white.png'
+                    ? 'assets/images/range_white.png' //change the image based on the theme
                     : 'assets/images/range_black.png',
                 width: 200, 
                 height: 150, 

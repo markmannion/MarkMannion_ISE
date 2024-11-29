@@ -5,11 +5,14 @@ import 'package:http/http.dart' as http;
 import 'belvelly.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
+//linking to the python app through a local network
 fetchData(String url) async {
   http.Response response = await http.get(Uri.parse(url));
   return response.body;
 }
 
+//Creating the light and dark themes for the app
 final lightTheme = ThemeData(
   brightness: Brightness.light,
   primaryColor: Colors.blueGrey,
@@ -63,6 +66,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//Setting up the home page to include - the changing image, main title, courses, a theme toggle, link to my github repo
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -143,7 +147,7 @@ class HomePage extends StatelessWidget {
                         throw 'Could not launch $url';
                       }
                     },
-                    child: const Text('https://github.com/markmannion',
+                    child: const Text('https://github.com/markmannion', //link to my github repo
                     style: TextStyle(
                       color: Colors.blue,
                       decoration: TextDecoration.underline,
@@ -160,6 +164,9 @@ class HomePage extends StatelessWidget {
   }
 }
 
+
+//declaring the GolfApp and linking it to my python script
+//also setting up the two other pages to work with the home page
 class GolfApp extends StatefulWidget {
   const GolfApp({super.key});
 
@@ -177,7 +184,7 @@ class GolfAppState extends State<GolfApp> {
 
   Future<void> calculate() async {
     try {
-      final url = Uri.parse('http://127.0.0.1:5000/calculate');
+      final url = Uri.parse('http://127.0.0.1:5000/calculate'); //same url as the python app
       final body = {
         'yard': int.tryParse(yardController.text) ?? 0,
         'wind': int.tryParse(windController.text) ?? 0,

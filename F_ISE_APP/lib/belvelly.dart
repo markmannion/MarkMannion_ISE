@@ -132,7 +132,7 @@ class BelvellyState extends State<Belvelly> {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Fota - Belvelly Course', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold))),
+      appBar: AppBar(title: const Text('Fota - Belvelly Course', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -144,20 +144,20 @@ class BelvellyState extends State<Belvelly> {
                     ? 'assets/images/range_white.png'
                     : 'assets/images/range_black.png',
                 width: 200,
-                height: 150,
+                height: 200,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 25),
               _buildInputCard('Yardage', yardController),
               _buildInputCard('Wind Speed MPH (Neg if downwind)', windController),
               _buildInputCard('Temperature *C', tempController),
               _buildInputCard('Hole', holeController),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: calculate, child: const Text('Calculate')),
-              const SizedBox(height: 20),
+              ElevatedButton(onPressed: calculate, child: const Text('Calculate',textAlign: TextAlign.center, style: TextStyle(fontSize: 22))),
+              const SizedBox(height: 25),
               Text(
                 result,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ],
           ),

@@ -290,7 +290,8 @@ class Belvelly extends StatefulWidget {
   @override
   BelvellyState createState() => BelvellyState();
 }
-
+//declaring the belvelly state
+//used for the belvelly page to link it to the python flask app
 class BelvellyState extends State<Belvelly> {
   final TextEditingController yardController = TextEditingController();
   final TextEditingController windController = TextEditingController();

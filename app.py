@@ -2,18 +2,18 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/calculate', methods=['POST'])
+@app.route('/calculate', methods=['POST']) #same route as the flutter app to link them
 def calculate():
     try:
-        data = request.json
+        data = request.json #looks for the integer inputs from the flutter app
         yard = int(data['yard'])
         wind = int(data['wind'])
         temp = int(data['temp'])
         hole = int(data['hole'])
 
-        fa_temp = (temp * 1.8) + 32  # Convert temperature to Fahrenheit
+        fa_temp = (temp * 1.8) + 32  # Converts the temperature to Fahrenheit
         
-        # Wind adjustment
+        # The Wind adjustment dictionary
         wind_dict = {
             (-30, -25): -25, (-24, -20): -20, (-19, -15): -15, 
             (-14, -10): -10, (-9, -5): -5, (-4, 0): 0, (0, 4): 0, 
@@ -21,7 +21,7 @@ def calculate():
         }
         wind_adj_yard = yard + next((adj for (low, high), adj in wind_dict.items() if low < wind <= high), 0)
 
-        # Temperature adjustment
+        # The Temperature adjustment dictionary
         temp_dict = {
             (24, 36): 10, (36, 46): 8, (46, 56): 6, (56, 66): 4,
             (66, 75): 2, (75, 75): 0, (75, 85): -2, (85, 95): -4,
@@ -29,7 +29,7 @@ def calculate():
         }
         temp_adj_yard = wind_adj_yard + next((adj for (low, high), adj in temp_dict.items() if low < fa_temp <= high), 0)
 
-        # Slope adjustment
+        # The Slope adjustment dictionary
         slope_dict = {
             200: {1: 3, 2: -3, 3: -3, 4: -6, 5: -3, 6: 3, 7: 0, 8: 6, 9: -9, 10: -3, 11: 0, 12: 3, 13: -3, 14: 6, 15: -6, 16: 3, 17: 0, 18: -9},
             150: {1: 3, 2: -3, 3: -3, 4: -3, 5: -3, 6: 6, 7: 0, 8: 6, 9: -9, 10: -3, 11: 0, 12: 3, 13: -3, 14: 3, 15: -3, 16: 6, 17: 0, 18: -9},
@@ -54,10 +54,10 @@ def calculate():
         }
         club = next((club for final_range, club in clubs.items() if fin_yard in final_range), "Unknown Club")
 
-        return jsonify({"final_yardage": fin_yard, "recommended_club": club})
+        return jsonify({"final_yardage": fin_yard, "recommended_club": club}) #Determines the final yardage and club. Then sends that text to the flutter app
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({"error": str(e)}), 400 #Incase of an error when sending the final yardage and club
 
 if __name__ == '__main__':
     app.run()

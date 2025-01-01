@@ -32,7 +32,7 @@ wind_dict = {
 # Determine adjusted yardage based on wind speed
 wind_adj_yard = yard + next((adj for (low, high), adj in wind_dict.items() if low < wind <= high), 0)
 
-# Dictionary to add or take away distance baes on the temperature
+# Dictionary to add or take away distance based on the temperature
 temp_dict = {
     (24, 36): -10,
     (36, 46): -8,
@@ -87,3 +87,10 @@ for final_yardage_range, club in clubs.items():
         print(f"\033[1m You should hit your {club}\033[0m")
         print("\n")
         break
+    
+    
+    
+    
+    
+    
+    
